@@ -4,6 +4,9 @@ import Counter from './Counter';
 import ExHelloWorld from './ExHelloWorld';
 import ExMultiStateButton from './ExMultiStateButton';
 import Hello from './Hello';
+import MultiButton from './MultiButton';
+import Select from './Select';
+import ToggleClock from './ToggleClock';
 
 function App() {
   // React.createElement(Hello, {prenom: 'Romain})
@@ -18,6 +21,11 @@ function App() {
 
       <ExHelloWorld />
       <ExMultiStateButton values={['Rouge', 'Orange', 'Bleu']} />
+
+      <ToggleClock />
+      <MultiButton values={['Rouge', 'Orange', 'Bleu']}  />
+
+      <Select items={['Rouge', 'Orange', 'Bleu']} />
     </div>
   );
 }
