@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "todo-react"
+		},
+		{
+			"path": "hello-redux-node"
+		},
+		{
+			"path": "hello-react-redux"
 		}
 	],
 	"settings": {}
