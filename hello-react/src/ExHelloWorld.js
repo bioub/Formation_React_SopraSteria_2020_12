@@ -33,7 +33,7 @@ class ExHelloWorld extends Component {
   };
   handleChange = (event) => {
     this.setState({
-      prenom: event.target.value,
+      prenom: event.target.value.toUpperCase(),
     });
   }
   render() {

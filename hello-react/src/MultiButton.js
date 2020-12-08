@@ -57,7 +57,7 @@ class MultiButton extends Component {
     return (
       <div className="MultiButton">
         {values.map((v, i) => (
-          <button key={v} onClick={this.handleClick} disabled={i !== index}>
+          <button key={v} onClick={this.handleClick} disabled={i !== index} className={i === index ? 'selected' : ''}>
             {v}
           </button>
         ))}

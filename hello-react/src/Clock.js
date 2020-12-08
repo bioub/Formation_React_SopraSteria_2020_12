@@ -5,16 +5,27 @@
 import { Component } from "react";
 
 class Clock extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       options: {
-        format: 'HH:mm:ss',
+        format: "HH:mm:ss",
         delay: 1000,
       },
       now: new Date(),
     };
-    setInterval(() => {
+
+  }
+  componentDidMount() {
+    // juste après que le composant soit apparu dans le DOM
+    // ici vous avez accès aux éléments
+    // - setInterval
+    // - new WebSocket
+    // - new Worker
+    // - requetes HTTP (XMLHttpRequest, fetch, axios)
+    this._interval = setInterval(() => {
+      console.log('tick');
+      console.log(this);
       // Erreur : state is not mutable
       // this.state.now = new Date();
 
@@ -29,13 +40,29 @@ class Clock extends Component {
       });
     }, 1000);
   }
+  componentDidUpdate() {
+    // appelé à chaque update des props
+    // ex: le délai de setInterval soit reçu des props
+  }
+  componentWillUnmount() {
+    // juste avant qu'il disparaisse du DOM
+    // libérer la mémoire :
+    // - setInterval -> clearInterval
+    // - new WebSocket -> close
+    // - new Worker -> close
+    clearInterval(this._interval);
+  }
   render() {
     const { now, options } = this.state;
 
     // this.props pour accéder aux props
     // const { format } = this.props;
 
-    return <div className="Clock">{now.toLocaleTimeString()} {JSON.stringify(options)}</div>
+    return (
+      <div className="Clock">
+        {now.toLocaleTimeString()} {JSON.stringify(options)}
+      </div>
+    );
   }
 }
 

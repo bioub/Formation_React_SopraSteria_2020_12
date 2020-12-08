@@ -1,0 +1,31 @@
+$border-color: black;
+
+.host {
+  user-select: none;
+  cursor: pointer;
+}
+
+.selected {
+  border: 1px solid $border-color;
+  max-width: 200px;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.items {
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  background-color: white;
+  max-width: 200px;
+  box-sizing: border-box;
+}
+
+.item {
+  padding: 5px;
+}
+
+.item:hover {
+  background-color: #ddefef;
+}
