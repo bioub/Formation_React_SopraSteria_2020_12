@@ -1,46 +1,12 @@
-import { useState } from "react";
-import TodoForm from "./TodoForm";
-import TodoList from "./TodoList";
+import TodoFormContainer from "../containers/TodoFormContainer";
+import TodoListContainer from "../containers/TodoListContainer";
 
 function Todos() {
-  const [newTodo, setNewTodo] = useState("");
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: "Acheter du pain",
-      completed: true,
-    },
-    {
-      id: 2,
-      title: "Introduire Redux",
-      completed: false,
-    },
-  ]);
-
-  function handleNewTodoSubmit(newTodo) {
-    setTodos([
-      ...todos,
-      {
-        id: Math.random(),
-        title: newTodo,
-        completed: false,
-      },
-    ]);
-    setNewTodo("");
-  }
-
-  function handleDelete(item) {
-    setTodos(todos.filter((t) => t.id !== item.id));
-  }
-
   return (
     <div className="Todos">
-      <TodoForm
-        newTodo={newTodo}
-        onNewTodoChange={setNewTodo}
-        onNewTodoSubmit={handleNewTodoSubmit}
-      />
-      <TodoList items={todos} onDelete={handleDelete} />
+      <h2>Todos</h2>
+      <TodoFormContainer />
+      <TodoListContainer />
     </div>
   );
 }
