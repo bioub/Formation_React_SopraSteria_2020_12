@@ -8,12 +8,10 @@ export function reducer(state = initialState, action) {
   switch (action.type) {
     case INCREMENT:
       return {
-        ...state,
         cpt: state.cpt + 1,
       };
     case DECREMENT:
       return {
-        ...state,
         cpt: state.cpt - 1,
       };
     default:
