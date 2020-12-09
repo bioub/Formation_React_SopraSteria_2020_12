@@ -10,7 +10,11 @@ import { INCREMENT } from '../store/constants';
 //     cpt = state.cpt;
 //   });
 
-//   return <Counter count={cpt} />
+// function onIncrement() {
+//   store.dispatch({type: INCREMENT})
+// }
+
+//   return <Counter count={cpt} onIncrement={onIncrement} />
 // }
 
 function mapStateToProps(state) {

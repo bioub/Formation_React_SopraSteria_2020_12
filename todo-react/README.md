@@ -41,6 +41,10 @@ Prévoir des valeurs initiales (comme avec cpt)
 
 > optionnel: Créer les constantes TODO_ADD, TODO_CHANGE
 
+TODO_CHANGE utilisé quand on saisi dans le champs
+
+TODO_ADD utilisé quand on soumet le formulaire
+
 Traiter TODO_CHANGE. L'action TODO_CHANGE ressemblera à :
 
 ```
@@ -64,6 +68,7 @@ Traiter TODO_ADD. L'action TODO_ADD ressemblera à :
 ```
 
 Attention à penser à créer un nouveau state, et un nouveau tableau dans le cas de TODO_ADD (changement immuable)
+2 fois ... pour l'objet {} et pour le tableau []
 
 Avec l'extension Redux Devtools, tester via le bouton dispatch que les reducer fonctionne
 
@@ -74,10 +79,10 @@ Ecrire la fonction mapStateToProps (les clés retournées sont les props des com
 > optionnel: Si possible rechercher dans le state avec un selecteur (selectors.js)
 
 Pour TodoForm il y aura un mapDispatchToProps avec 2 clés :
-- onTodoChange
-- onTodoAdd
+- onNewTodoChange
+- onNewTodoSubmit
 
-Qui doit dispatcher les actions correspondant (celle testées via l'extension)
+Qui doit dispatcher les actions correspondantes (celles testées via l'extension)
 
 > optionnel: Si possible créer les actions via des actions creators (actions.js)
 

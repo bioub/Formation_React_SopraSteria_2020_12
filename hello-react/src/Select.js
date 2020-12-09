@@ -1,19 +1,17 @@
 import styles from './Select.module.scss';
 
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 
 class Select extends Component {
-  constructor({ items = [] }) {
+  hostRef = createRef();
+
+  constructor() {
     super();
-    if (!items.length) {
-      throw new Error("items est obligatoire");
-    }
+
     this.state = {
-      selected: items[0],
       open: false,
     };
     this.handleSelectedClick = this.handleSelectedClick.bind(this);
-    // this.handleItemClick = this.handleItemClick.bind(this);
   }
 
   handleSelectedClick() {
@@ -23,37 +21,41 @@ class Select extends Component {
     });
   }
 
-  // handleItemClick(event) {
-  //   this.setState({
-  //     open: false,
-  //     selected: event.target.dataset.item,
-  //   });
-  // }
-
   handleItemClick(item) {
+    const { onSelected } = this.props;
     this.setState({
       open: false,
-      selected: item,
+    });
+    onSelected(item);
+  }
+
+  handleDocumentClick = (event) => {
+    if (this.hostRef.current.contains(event.target)) {
+      return;
+    }
+
+    this.setState({
+      open: false,
     });
   }
 
+  componentDidMount() {
+    document.addEventListener('click', this.handleDocumentClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleDocumentClick);
+  }
+
   render() {
-    // Exercice :
-    // 1 / Afficher les valeurs :
-    //     - selected du state dans <div className="selected">
-    //     - items de props dans <div className="items">
-    // 2 / Au click de <div className="selected"> passer open à !open
-    //     conditionner l'affichage de <div className="items"> à open
-    // 3 / Au click de <div className="item">
-    //     stocker la valeur dans state selected et passer open à false
-    const { selected, open } = this.state;
     const { items = [] } = this.props;
 
-    // const itemsJsx = items.map((it) => (
-    //   <div key={it} className="item" data-item={it} onClick={this.handleItemClick}>
-    //     {it}
-    //   </div>
-    // ));
+    if (!items.length) {
+      throw new Error("items est obligatoire");
+    }
+
+    const { selected = items[0] } = this.props
+    const { open } = this.state;
 
     const itemsJsx = items.map((it) => (
       <div key={it} className={styles.item} data-item={it} onClick={() => this.handleItemClick(it)}>
@@ -62,7 +64,7 @@ class Select extends Component {
     ));
 
     return (
-      <div className={styles.host}>
+      <div className={styles.host} ref={this.hostRef}>
         <div className={styles.selected} onClick={this.handleSelectedClick}>{selected}</div>
         {open && <div className={styles.items }>{itemsJsx}</div>}
       </div>

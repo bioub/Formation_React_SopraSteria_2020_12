@@ -2,6 +2,7 @@ const redux = require("redux");
 
 const initialState = {
   cpt: 10,
+  newTodo: '',
 };
 
 // fonction qui renvoit la prochaine la valeur du
@@ -19,10 +20,12 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case "increment":
       return {
-        cpt: state.cpt + 1,
+        ...state,
+        cpt: state.cpt + (action.payload ?? 1),
       };
     case "decrement":
       return {
+        ...state,
         cpt: state.cpt - 1,
       };
     default:
@@ -41,9 +44,9 @@ store.subscribe(() => {
 });
 
 // document.dispatchEvent(new Event('click'));
-store.dispatch({ type: "increment" });
+store.dispatch({ type: "increment", payload: 2 });
 store.dispatch({ type: "increment" });
 store.dispatch({ type: "decrement" });
 store.dispatch({ type: "unknown" });
 
-// dispatch(action) -> reducer -> state -> subscribe
+// composant/dispatch(action) -> reducer -> state -> subscribe/composant

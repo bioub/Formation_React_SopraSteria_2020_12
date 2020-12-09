@@ -1,4 +1,4 @@
-import { Component } from "react";
+// import { Component } from "react";
 
 // class Counter extends Component {
 //   constructor(props) {
@@ -27,11 +27,7 @@ import { Component } from "react";
 // }
 
 function Counter({ count, onIncrement = () => {}  }) {
-  function handleClick(event) {
-    console.log(event.target.className); // Counter
-    console.log(event.target.innerText); // contenu du bouton
-    console.log(event.target.value); // valeur du champ
-
+  function handleClick() {
     // remonter la valeur au parent
     onIncrement(count + 1);
   }
