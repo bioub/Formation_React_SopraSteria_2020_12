@@ -1,16 +1,17 @@
 import TodoList from "../components/TodoList";
 import { connect } from 'react-redux';
+import { todosSelector } from "../store/selectors";
 
 
 function mapStateToProps(state) {
   return {
-    items: state.todos,
+    items: todosSelector(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    
+
   }
 }
 

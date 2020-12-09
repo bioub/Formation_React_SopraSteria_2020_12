@@ -1,3 +1,4 @@
+import { combineReducers } from "redux";
 import { TODO_ADD, TODO_CHANGE } from "./constants";
 
 const initialState = {
@@ -21,19 +22,42 @@ const initialState = {
   ],
 };
 
-export function reducer(state = initialState, action) {
+export function todosReducer(state = initialState.todos, action) {
   switch (action.type) {
     case TODO_ADD:
-      return {
-        ...state,
-        todos: [...state.todos, action.payload],
-      };
-    case TODO_CHANGE:
-      return {
-        ...state,
-        newTodo: action.payload,
-      };
+      return [...state, action.payload];
     default:
       return state;
   }
 }
+
+export function newTodoReducer(state = initialState.newTodo, action) {
+  switch (action.type) {
+    case TODO_CHANGE:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+export const reducer = combineReducers({
+  todos: todosReducer,
+  newTodo: newTodoReducer,
+});
+
+// export function reducer(state = initialState, action) {
+//   switch (action.type) {
+//     case TODO_ADD:
+//       return {
+//         ...state,
+//         todos: todosReducer(state, action),
+//       };
+//     case TODO_CHANGE:
+//       return {
+//         ...state,
+//         newTodo: newTodoReducer(state, action),
+//       };
+//     default:
+//       return state;
+//   }
+// }
