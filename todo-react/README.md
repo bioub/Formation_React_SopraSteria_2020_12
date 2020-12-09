@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# Exercice Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Créer un nouveau projet todo-redux
 
-## Available Scripts
+En reprenant soit votre code, soit la correction (plus simple car Form est un composant controllé)
 
-In the project directory, you can run:
+## Installer redux
 
-### `npm start`
+`npm install redux react-redux`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Le state
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Le state devra avoir cette forme là
 
-### `npm test`
+```
+{
+  newTodo: 'Achet',
+  todos: [{
+    id: 1,
+    title: 'Acheter du pain',
+    completed: false,
+  }, {
+    id: 2,
+    title: 'Aller au sport',
+    completed: true,
+  }, {
+    id: 3,
+    title: 'Utiliser Redux',
+    completed: false,
+  }],
+}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Créer store
 
-### `npm run build`
+Reprendre le code de hello-react-redux dans index.js
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Prévoir des valeurs initiales (comme avec cpt)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Ecrire le reducer se basant sur les actions TODO_ADD, TODO_CHANGE
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> optionnel: Créer les constantes TODO_ADD, TODO_CHANGE
 
-### `npm run eject`
+Traiter TODO_CHANGE. L'action TODO_CHANGE ressemblera à :
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+{
+  type: 'TODO_CHANGE',
+  payload: 'Acheter'
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Traiter TODO_ADD. L'action TODO_ADD ressemblera à :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+{
+  type: 'TODO_ADD',
+  payload: {
+    id: 123,
+    title: 'Acheter du pain',
+    completed: false,
+  }
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Attention à penser à créer un nouveau state, et un nouveau tableau dans le cas de TODO_ADD (changement immuable)
 
-## Learn More
+Avec l'extension Redux Devtools, tester via le bouton dispatch que les reducer fonctionne
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Ecrire les versions connectées des composants TodoForm et TodoList
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Ecrire la fonction mapStateToProps (les clés retournées sont les props des composant TodoForm : newTodo, TodoList: todos)
 
-### Code Splitting
+> optionnel: Si possible rechercher dans le state avec un selecteur (selectors.js)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Pour TodoForm il y aura un mapDispatchToProps avec 2 clés :
+- onTodoChange
+- onTodoAdd
 
-### Analyzing the Bundle Size
+Qui doit dispatcher les actions correspondant (celle testées via l'extension)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+> optionnel: Si possible créer les actions via des actions creators (actions.js)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Optionnel (TODO_DELETE)
