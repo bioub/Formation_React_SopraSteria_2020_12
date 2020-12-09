@@ -1,7 +1,7 @@
 import { Link, Route } from "react-router-dom";
+import UsersContainer from "../containers/UsersContainer";
 import Home from "./Home";
 import Todos from "./Todos";
-import Users from "./Users";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       </nav>
       <Route path="/" component={Home} exact />
       <Route path="/todos" component={Todos} />
-      <Route path="/users" component={Users} />
+      <Route path="/users" component={UsersContainer} />
     </div>
   );
 }

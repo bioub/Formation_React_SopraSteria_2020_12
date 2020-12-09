@@ -1,7 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 
 export function newTodoSelector(state) {
-  return state.newTodo;
+  return state.todos.newTodo;
 }
 
 // export function todosSelector(state) {
@@ -13,12 +13,16 @@ export function newTodoSelector(state) {
 // }
 
 export const todosSelector = createSelector(
-  (state) => state.todos,
-  (todos) => {
+  (state) => state.todos.items,
+  (items) => {
     // simuler un traitement lourd (durée 1s)
     // const debut = Date.now();
     // while (debut + 1000 > Date.now());
 
-    return todos;
+    return items;
   }
 );
+
+export function usersSelector(state) {
+  return state.users;
+}
