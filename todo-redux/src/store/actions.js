@@ -1,19 +1,10 @@
-import { TODO_ADD, TODO_CHANGE } from "./constants";
+import { createAction, nanoid } from "@reduxjs/toolkit";
 
-export function todoChange(payload) {
-  return {
-    type: TODO_CHANGE,
-    payload,
-  };
-}
-
-export function todoAdd(title) {
-  return {
-    type: TODO_ADD,
-    payload: {
-      id: Math.random(),
-      title,
-      completed: false,
-    },
-  };
-}
+export const todoChange = createAction('TODO_CHANGE');
+export const todoAdd = createAction('TODO_ADD', (title) => ({
+  payload: {
+    id: nanoid(),
+    title,
+    completed: false,
+  },
+}));
